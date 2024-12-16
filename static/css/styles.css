@@ -1,0 +1,241 @@
+:root {
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --error-color: #dc3545;
+    --border-color: #dee2e6;
+    --page-margin: 15px;
+    --header-height: 60px;
+}
+
+body {
+    margin: 0;
+    padding: var(--page-margin);
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--page-margin);
+    background-color: white;
+    padding: 10px 20px;
+    border: 1px solid var(--border-color);
+    height: var(--header-height);
+    flex-shrink: 0;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-left img {
+    height: 40px;
+    margin-right: 20px;
+    padding-right: 20px;
+    border-right: 2px solid var(--border-color);
+}
+
+.header-right {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 300px 1fr 400px;
+    gap: 15px;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* Left Panel Layout */
+.left-panel {
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    gap: 15px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.left-panel > div {
+    background-color: white;
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+/* Center Panel Layout */
+.center-panel {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 15px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.chart-container {
+    background-color: white;
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+/* Right Panel Layout */
+.right-panel {
+    display: grid;
+    grid-template-rows: 2fr 1fr auto auto;
+    gap: 15px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.right-panel > div {
+    background-color: white;
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    margin: 0;
+    min-height: 0;
+}
+
+.camera-feed {
+    display: flex;
+    flex-direction: column;
+}
+
+.video-container {
+    flex: 1;
+    position: relative;
+    min-height: 0;
+}
+
+.video-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-controls {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.production-details-box {
+    overflow-y: auto;
+}
+
+.total-production-box {
+    text-align: center;
+    background-color: #d4edda !important;
+}
+
+.total-scrap-box {
+    text-align: center;
+    background-color: #fff3cd !important;
+}
+
+.total-quantity,
+.total-scrap {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 8px 0;
+}
+
+/* Common Styles */
+h3 {
+    margin: 0 0 10px 0;
+    color: #343a40;
+    font-size: 14px;
+}
+
+.part-info-box {
+    background-color: white;
+    font-size: 13px;
+}
+
+.production-box.success {
+    background-color: #d4edda;
+    border-color: var(--success-color);
+    font-size: 13px;
+}
+
+.production-box.warning {
+    background-color: #fff3cd;
+    border-color: var(--warning-color);
+    font-size: 13px;
+}
+
+.scrap-box {
+    background-color: #fff3cd;
+    border-color: var(--warning-color);
+    font-size: 13px;
+}
+
+.delta {
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+.delta.negative {
+    color: var(--error-color);
+}
+
+.details-list {
+    font-size: 13px;
+}
+
+.datetime, .refresh-info {
+    font-size: 13px;
+}
+
+.shutdown-button {
+    margin-top: 8px;
+    padding: 6px 12px;
+    background-color: var(--error-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.2s;
+}
+
+.shutdown-button:hover {
+    background-color: #bd2130;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

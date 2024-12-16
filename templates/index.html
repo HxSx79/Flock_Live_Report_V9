@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decatur MX - Flock Real Time Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="{{ url_for('static', filename='images/decatur-logo.png') }}" alt="Decatur Logo">
+            <h1>Decatur MX - Flock Real Time Report</h1>
+        </div>
+        <div class="header-right">
+            <div class="datetime">{{ current_datetime }}</div>
+            <div class="refresh-info">Last refresh: <span id="last-refresh">{{ current_time }}</span></div>
+            <button id="shutdown-button" class="shutdown-button">Close Application</button>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="left-panel">
+            <!-- Current Part Line 1 -->
+            <div class="part-info-box">
+                <h3>Current Part Line 1</h3>
+                <div class="part-details">
+                    <div>Program: <span id="program-1">{{ line1_part.program }}</span></div>
+                    <div>Part Number: <span id="part-number-1">{{ line1_part.number }}</span></div>
+                    <div>Part Description: <span id="part-description-1">{{ line1_part.description }}</span></div>
+                </div>
+            </div>
+
+            <!-- Production Line 1 -->
+            <div class="production-box success">
+                <h3>Production Line 1</h3>
+                <div class="production-details">
+                    <div>Total Quantity / Shift: <span id="quantity-1">{{ line1_production.quantity }}</span></div>
+                    <div class="delta">Delta: <span id="delta-1">{{ line1_production.delta }}</span></div>
+                    <div>Parts / Hour: <span id="pph-1">{{ line1_production.pph }}</span></div>
+                </div>
+            </div>
+
+            <!-- Scrap Line 1 -->
+            <div class="scrap-box warning">
+                <h3>Scrap Line 1</h3>
+                <div class="scrap-details">
+                    <div>Total Scrap: <span id="scrap-1">{{ line1_scrap.total }}</span></div>
+                    <div>Scrap Rate: <span id="scrap-rate-1">{{ line1_scrap.rate }}%</span></div>
+                </div>
+            </div>
+
+            <!-- Repeat for Line 2 -->
+            <div class="part-info-box">
+                <h3>Current Part Line 2</h3>
+                <div class="part-details">
+                    <div>Program: <span id="program-2">{{ line2_part.program }}</span></div>
+                    <div>Part Number: <span id="part-number-2">{{ line2_part.number }}</span></div>
+                    <div>Part Description: <span id="part-description-2">{{ line2_part.description }}</span></div>
+                </div>
+            </div>
+
+            <div class="production-box warning">
+                <h3>Production Line 2</h3>
+                <div class="production-details">
+                    <div>Total Quantity / Shift: <span id="quantity-2">{{ line2_production.quantity }}</span></div>
+                    <div class="delta">Delta: <span id="delta-2">{{ line2_production.delta }}</span></div>
+                    <div>Parts / Hour: <span id="pph-2">{{ line2_production.pph }}</span></div>
+                </div>
+            </div>
+
+            <div class="scrap-box warning">
+                <h3>Scrap Line 2</h3>
+                <div class="scrap-details">
+                    <div>Total Scrap: <span id="scrap-2">{{ line2_scrap.total }}</span></div>
+                    <div>Scrap Rate: <span id="scrap-rate-2">{{ line2_scrap.rate }}%</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="center-panel">
+            <!-- Production Rate Charts -->
+            <div class="chart-container">
+                <h3>Line 1 Production Rate</h3>
+                <canvas id="line1-chart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Line 2 Production Rate</h3>
+                <canvas id="line2-chart"></canvas>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="camera-feed">
+                <h3>Live Camera Feed</h3>
+                <div class="video-container">
+                    <img src="{{ url_for('video_feed') }}" alt="Live Camera Feed">
+                    <div class="video-controls">
+                        <input type="file" id="video-upload" accept="video/*" style="display: none;">
+                        <button onclick="document.getElementById('video-upload').click()">Upload Test Video</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="production-details-box">
+                <h3>Production Details</h3>
+                <div class="details-list" id="production-details">
+                    <!-- Production details will be populated dynamically -->
+                </div>
+            </div>
+
+            <div class="total-production-box success">
+                <h3>Total Quantity Produced</h3>
+                <div class="total-quantity" id="total-quantity">{{ total_quantity }}</div>
+                <div class="total-delta">Total Delta: <span id="total-delta">{{ total_delta }}</span></div>
+            </div>
+
+            <div class="total-scrap-box warning">
+                <h3>Total Scrap</h3>
+                <div class="total-scrap" id="total-scrap">{{ total_scrap }}</div>
+                <div class="average-scrap-rate">Average Scrap Rate: <span id="average-scrap-rate">{{ average_scrap_rate }}%</span></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

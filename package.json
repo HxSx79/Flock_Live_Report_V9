@@ -1,0 +1,9 @@
+{
+  "name": "flocked-parts-tracker",
+  "version": "1.0.0",
+  "description": "Real Time Flocked Parts Production Tracking System",
+  "main": "app.py",
+  "dependencies": {
+    "chart.js": "^4.4.1"
+  }
+}
